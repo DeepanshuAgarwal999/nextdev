@@ -1,12 +1,7 @@
-"use client";
 import { redirect } from "next/navigation";
-import React, { useEffect } from "react";
 
 const page = () => {
-  useEffect(() => {
-    redirect("/home");
-  }, []);
-  return <div>page</div>;
+  redirect("/home");
 };
 
 export default page;
