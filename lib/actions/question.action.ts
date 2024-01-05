@@ -14,7 +14,7 @@ export async function getQuestions(params: GetQuestionsParams) {
     const questions = await Question.find({})
       .populate({ path: "tags", model: Tag })
       // .populate({ path: "author", model: User })
-      .sort({createdAt:-1})
+      .sort({ createdAt: -1 });
     // mongodb doesn't show properties which are inside array in firstTime so to get them we use populate
     return { questions };
   } catch (error) {
@@ -26,8 +26,7 @@ export async function createQuestion(params: any) {
   try {
     connectToDatabase();
     const { title, content, tags, author, path } = params;
-    console.log(path);
-    
+
     const question = await Question.create({
       title,
       content,
@@ -46,8 +45,8 @@ export async function createQuestion(params: any) {
       $push: { tags: { $each: tagDocuments } },
     });
 
-    revalidatePath(path)
+    revalidatePath(path);
   } catch (error) {
-    console.warn(error)
+    console.warn(error);
   }
 }
