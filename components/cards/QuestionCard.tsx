@@ -54,7 +54,7 @@ const QuestionCard = ({
           value={author?.name}
           title={`- asked ${getTimeStamp(createdAt)}`}
           href={`{/profile/${author?._id}}`}
-          textStyles="body-medium text-dark400_light800"
+          textStyles="body-medium text-dark500_light700"
           isAuthor
         />
         <Metric
