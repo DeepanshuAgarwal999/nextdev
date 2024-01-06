@@ -13,9 +13,10 @@ export async function getQuestions(params: GetQuestionsParams) {
 
     const questions = await Question.find({})
       .populate({ path: "tags", model: Tag })
-      // .populate({ path: "author", model: User })
+      .populate({ path: "author", model: User })
       .sort({ createdAt: -1 });
     // mongodb doesn't show properties which are inside array in firstTime so to get them we use populate
+    
     return { questions };
   } catch (error) {
     console.log(error);
