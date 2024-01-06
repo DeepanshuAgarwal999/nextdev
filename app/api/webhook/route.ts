@@ -89,7 +89,7 @@ export async function POST(req: Request) {
     const deletedUser = await deleteUser({
       clerkId: id!,
     });
-    return NextResponse.json({ message: "OK", user: deleteUser });
+    return NextResponse.json({ message: "OK", user: deletedUser });
   }
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
   console.log("Webhook body:", body);

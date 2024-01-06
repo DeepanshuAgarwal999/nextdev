@@ -38,7 +38,6 @@ export async function updateUser(params: UpdateUserParams) {
     connectToDatabase();
     const { clerkId, updateData, path } = params;
     console.log(clerkId);
-    
     const updateUser = await User.findByIdAndUpdate({ clerkId }, updateData, {
       new: true,
     });
@@ -57,15 +56,15 @@ export async function deleteUser(params: DeleteUserParams) {
     if (!user) {
       throw new Error("user not found");
     }
-    const userQuestionIds = await Question.find({ author: user._id }).distinct(
-      "_id"
-    );
+    // const userQuestionIds = await Question.find({ author: user._id }).distinct(
+    //   "_id"
+    // );
     // delete all questions of user
     await Question.deleteMany({ author: user._id });
     // TODO : delete answers also
 
     const deletedUser = await User.findByIdAndDelete({ clerkId });
-    return deletedUser
+    return deletedUser;
   } catch (error) {
     console.warn(error);
     throw error;
