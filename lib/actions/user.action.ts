@@ -38,8 +38,8 @@ export async function updateUser(params: UpdateUserParams) {
     connectToDatabase();
     const { clerkId, updateData, path } = params;
     console.log(clerkId);
-    
-    const updateUser = await User.findByIdAndUpdate({ clerkId }, updateData, {
+
+    const updateUser = await User.findByIdAndUpdate(clerkId, updateData, {
       new: true,
     });
     revalidatePath(path);
@@ -65,7 +65,7 @@ export async function deleteUser(params: DeleteUserParams) {
     // TODO : delete answers also
 
     const deletedUser = await User.findByIdAndDelete({ clerkId });
-    return deletedUser
+    return deletedUser;
   } catch (error) {
     console.warn(error);
     throw error;
